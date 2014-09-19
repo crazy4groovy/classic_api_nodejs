@@ -1,7 +1,7 @@
 cred    = require '../config/private_credentials'
 request = require 'request'
 util    = require 'util'
-{API}   = require '../api'
+{API}   = require 'coffee_salsa'
 
 api = new API cred
 api.authenticate (err, body) ->
@@ -9,12 +9,12 @@ api.authenticate (err, body) ->
     console.log body.message
 
     queries =
-        condition: 'amount>500'
+        condition: 'amount>1'
         include: 'Transaction_Date,First_Name,Last_Name,amount'
         json:    true
         limit:
             offset: 0
-            count: 10
+            count: 500
         object:  'donation'
         orderBy: 'Last_Name,First_Name,Email'
 

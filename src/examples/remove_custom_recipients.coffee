@@ -2,7 +2,7 @@ _     = require 'underscore'
 async = require 'async'
 cred  = require '../config/private_credentials'
 util  = require 'util'
-{API} = require '../api'
+{API}   = require 'coffee_salsa'
 
 api = new API cred
 api.authenticate (err, results) ->

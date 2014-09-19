@@ -1,7 +1,7 @@
 cred        = require '../config/private_credentials'
 request 	= require "request"
 util		= require "util"
-{API}       = require "../api"
+{API}       = require "coffee_salsa"
 
 api = new API cred
 api.authenticate (err, res, body) ->
