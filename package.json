@@ -1,6 +1,6 @@
 {
   "name": "coffee_salsa",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SalsaLabs API for CoffeeScript and Javascript",
   "private": true,
   "author": "Allen Leonard <aleonard@salsalabs.com. (http://www.salsalabs.com)",
