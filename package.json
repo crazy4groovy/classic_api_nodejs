@@ -9,9 +9,9 @@
     "url": "https://aleonard@git.salsalabs.net/git/~aleonard/api_playground.git"
   },
   "scripts": {
-    "pre-build": "git rm -f",
+    "prebuild": "git rm -f",
     "build": "npm pack",
-    "pre-install": "coffee -c -o lib src"
+    "preinstall": "coffee -c -o lib src"
   },
   "bin": {},
   "dependencies": {
