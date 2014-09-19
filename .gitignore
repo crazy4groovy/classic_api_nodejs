@@ -5,12 +5,4 @@
 # *.[oa]
 # *~
 api_playground.sublime-workspace
-bin/*.js
-bin/lib/*.js
-bin/lib/*.js
-credentials/*.*
-examples/*.js
-lib/*.js
-node_modules
 node_modules/*
-
