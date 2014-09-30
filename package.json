@@ -1,27 +1,31 @@
 {
-  "name": "coffee_salsa",
-  "version": "1.0.1",
-  "description": "SalsaLabs API for CoffeeScript and Javascript",
+  "name": "api_playground",
+  "version": "2.1.2",
+  "description": "SalsaLabs API",
   "private": true,
-  "main": "./lib/api.js",
   "author": "Allen Leonard <aleonard@salsalabs.com. (http://www.salsalabs.com)",
   "repository": {
     "type": "git",
     "url": "https://aleonard@git.salsalabs.net/git/~aleonard/api_playground.git"
   },
   "scripts": {
-    "prebuild": "coffee -c -o lib src",
+    "pre-build": "git rm -f",
     "build": "npm pack",
-    "preinstall": "coffee -c -o lib src"
+    "pre-install": "coffee -c -o lib src"
   },
   "bin": {},
   "dependencies": {
     "async": "*",
+    "jsdom": "*",
     "request": "*",
     "underscore": "*"
   },
+  "devDependencies": {
+    "coffee-script": "*",
+    "codo": "*"
+  },
   "engines": {
-    "node": "*"
+    "node": "0.10.4"
   },
   "_npmUser": {
     "name": "aleonard",

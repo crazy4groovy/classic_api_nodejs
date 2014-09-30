@@ -25,7 +25,7 @@ class API
     # Performs authentication for using Salsa campaign manager credentials.
     # Results are returned through the callback.
     #
-    # @param [Function] cb callback to return the authentication results
+    # @param [Function] cb callback to return the results authentication
     #
     # @example
     #   api.authenticate, (err, results) ->
@@ -100,20 +100,6 @@ class API
             json: true
         request opts, cb
 
-    # Return the number of objects.
-    #
-    # @param        [Object]    qs      specification of the table to describe
-    # @option  qs   [String]    object  table name to describe
-    # @param        [Function]  cb      function called with (err, results)
-    #
-    # @example
-    #   qs = object: 'tag'
-    #   api.describeObject qs, (err, results) ->
-    #       throw err if err?
-    #       console.log "table #{qs.object} layout is", results
-    #
-    # @see https://help.salsalabs.com/entries/23537918-Getting-data-from-Salsa#describe2
-    #
     getCount: (qs, cb) ->
         opts =
             url: "https://#{@options.hostname}/api/getCount.sjs"
@@ -216,33 +202,13 @@ class API
           return cb err, null if err?
           cb null, _.flatten records
 
-    # Save a record to the database.  `qs` contains the required and optional
-    # parameters.
-    #
-    # @param  [Object]      qs  query string
-    # @option qs.object     [String]    table name in Salsa (`supporter`, `donation`, etc.)
-    # @option qs.key        [Number]    primary key for the record if provided.  New record otherwise.
-    # @option qs.field_x    [String]    field name name and value expressed as `fieldName`: `fieldValue`
-    # @param  [Function]    cb          callback to return (`err`, `request`, `body`)
-    #
-    # @example
-    #   qs =
-    #       object: 'supporter'
-    #       key: 123456
-    #       First_Name: 'Bob'
-    #       Last_Name: 'Johnson'
-    #       Email: 'bob@john.son'
-    #   api.save qs, (err, results) ->
-    #       throw err if err?
-    #       console.log "table #{qs.object} saving", qs, "results: ", results
-    #
+    # qs is {object: whatever, key=0|Number, record_field_1: whatever, record_field_2: whatever, etc.}   
     save: (qs, cb) ->
         opts =
             url: "https://#{@options.hostname}/save"
             qs: qs
             method: "GET"
             json: true
-        request opts, (err, res, body) ->
-            cb err, body
+        request opts, cb
 
 module.exports.API = API
