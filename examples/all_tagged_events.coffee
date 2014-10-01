@@ -1,10 +1,13 @@
 cred        = require '../config/sample'
-request 	= require "request"
 util		= require "util"
 {API}       = require "../lib/api"
 
 api         = new API cred
 
+# Retrieve events tagged with `bangarang`.  Note that
+# this just returns the first batch of events if there
+# are more than 500.
+#
 api.authenticate (err, res, body) ->
     if err?
         console.log "Authentication error: #{err}"
@@ -18,9 +21,9 @@ api.authenticate (err, res, body) ->
 
     qs =
         json:true
-        object: "action"
+        object: "event"
         tag: "bangarang"
-        includes: 'action_KEY,Reference_Name'
+        includes: 'event_KEY,Reference_Name'
     api.getTaggedObjects qs, (err, body) ->
     	console.log util.inspect body
     	process.exit 0

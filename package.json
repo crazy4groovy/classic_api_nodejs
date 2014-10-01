@@ -11,13 +11,15 @@
   "scripts": {
     "prebuild": "git rm -f",
     "build": "npm pack",
-    "preinstall": "coffee -c -o lib src"
+    "preinstall": "coffee -c -o lib src",
+    "doc": "codo -p -u --title 'CoffeeScript_Salsa_API' -d doc src examples"
   },
   "bin": {},
   "dependencies": {
     "async": "*",
     "jsdom": "*",
     "request": "*",
+    "sprintf": "*",
     "underscore": "*"
   },
   "devDependencies": {

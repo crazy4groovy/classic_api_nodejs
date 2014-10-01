@@ -1,10 +1,13 @@
 cred        = require '../config/sample'
-request 	= require "request"
 util		= require "util"
 {API}       = require "../lib/api"
 
 api         = new API cred
 
+# Retrieve actions tagged with `bangarang`.  Note that
+# this just returns the first batch of actions if there
+# are more than 500.
+#
 api.authenticate (err, res, body) ->
     if err?
         console.log "Authentication error: #{results.message}"

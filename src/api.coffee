@@ -25,7 +25,7 @@ class API
     # Performs authentication for using Salsa campaign manager credentials.
     # Results are returned through the callback.
     #
-    # @param [Function] cb callback to return the results authentication
+    # @param [Function] cb callback to return (`err`, `json_response`)
     #
     # @example
     #   api.authenticate, (err, results) ->
@@ -100,6 +100,25 @@ class API
             json: true
         request opts, cb
 
+    # Retrieve the number of records for a table. The `qs` parameter contains the options
+    # described in documentation (object, key, conditions, etc.).
+    #
+    # @param        [Object]    qs      specification of the table to count
+    # @option  qs   [String]    object  table name
+    # @param        [Function]  cb      function called with (err, results)
+    #
+    # @example
+    #   qs =
+    #       object: 'supporter'
+    #       countColumn: 'supporterKey'
+    #       limit: '20'
+    #       condition: 'First_Name!=Bob'
+    #   api.getCount qs, (err, results) ->
+    #       throw err if err?
+    #       console.log "table #{qs.object} count returned", results
+    #
+    # @see https://salsasupport.zendesk.com/entries/23537918-Getting-Data-From-Salsa#getCount
+    #
     getCount: (qs, cb) ->
         opts =
             url: "https://#{@options.hostname}/api/getCount.sjs"
@@ -108,8 +127,8 @@ class API
             json: true
         request opts, cb
 
-    # Read objects from a table.  The 'qs' parameter contains the options
-    # described in documetation (object, key, conditions, etc.).
+    # Read objects from a table.  The `qs` parameter contains the options
+    # described in documentation (object, key, conditions, etc.).
     #
     # @param    [Object]    qs  Query strings as an object
     # @param    [Function]  cb  Function that will receive (err, records)
@@ -135,7 +154,7 @@ class API
             json: true
         @_readFully opts, cb
 
-    # Read objects from a table that have a specific tag.  The 'qs' parameter
+    # Read objects from a table that have a specific tag.  The `qs` parameter
     # contains the options described in documetation (object, tag,  etc.).
     #
     # @param            [Object]    qs  Query strings as an object

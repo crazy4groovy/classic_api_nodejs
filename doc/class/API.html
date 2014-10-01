@@ -2,7 +2,7 @@
 <html>
   <head>
   <meta charset='UTF-8'>
-  <title>Coffescript Salsa API</title>
+  <title>&#39;CoffeeScript_Salsa_API&#39;</title>
   <script src='../javascript/application.js'></script>
   <script src='../javascript/search.js'></script>
   <link rel='stylesheet' href='../stylesheets/application.css' type='text/css'>
@@ -80,6 +80,7 @@
       </a>
     </span>
     <span class='desc'>
+      Retrieve the number of records for a table. 
     </span>
   </li>
   <li>
@@ -260,7 +261,7 @@ Results are returned through the callback.</p>
         )
       </span>
       &mdash;
-      <span class='desc'>callback to return the results authentication </span>
+      <span class='desc'>callback to return (<code>err</code>, <code>json_response</code>) </span>
     </li>
   </ul>
   <h3>See also:</h3>
@@ -426,7 +427,71 @@ api.describeObject qs, (err, results) -&gt;
 <b>getCount</b><span>(qs, cb)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>Retrieve the number of records for a table. The <code>qs</code> parameter contains the options
+described in documentation (object, key, conditions, etc.).</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      
+    </h4>
+    <pre><code class='coffeescript'>qs =
+    object: &#39;supporter&#39;
+    countColumn: &#39;supporterKey&#39;
+    limit: &#39;20&#39;
+    condition: &#39;First_Name!=Bob&#39;
+api.getCount qs, (err, results) -&gt;
+    throw err if err?
+    console.log &quot;table #{qs.object} count returned&quot;, results</code></pre>
+  </div>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>qs</span>
+      <span class='type'>
+        (
+          <tt>Object</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>specification of the table to count </span>
+    </li>
+    <li>
+      <span class='name'>cb</span>
+      <span class='type'>
+        (
+          <tt>Function</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>function called with (err, results) </span>
+    </li>
+  </ul>
+  <h3>
+    Options Hash:
+    (qs):
+  </h3>
+  <ul class='options'>
+    <li>
+      <span class='name'>object</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>table name </span>
+    </li>
+  </ul>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='https://salsasupport.zendesk.com/entries/23537918-Getting-Data-From-Salsa#getCount'>https:&#47;&#47;salsasupport.zendesk.com&#47;entries&#47;23537918-Getting-Data-From-Salsa#getCount</a>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='getObjects-dynamic'>
@@ -436,8 +501,8 @@ api.describeObject qs, (err, results) -&gt;
       <br>
     </p>
     <div class='docstring'>
-  <p>Read objects from a table.  The &#39;qs&#39; parameter contains the options
-described in documetation (object, key, conditions, etc.).</p>
+  <p>Read objects from a table.  The <code>qs</code> parameter contains the options
+described in documentation (object, key, conditions, etc.).</p>
   <div class='examples'>
     <h3>Examples:</h3>
     <h4>
@@ -490,7 +555,7 @@ api.getObjects qs, (err, results) -&gt;
       <br>
     </p>
     <div class='docstring'>
-  <p>Read objects from a table that have a specific tag.  The &#39;qs&#39; parameter
+  <p>Read objects from a table that have a specific tag.  The <code>qs</code> parameter
 contains the options described in documetation (object, tag,  etc.).</p>
 </div>
 <div class='tags'>
@@ -641,7 +706,7 @@ for a &#39;limit&#39; parameter are as follows:</p><ul>
 </div>
     </div>
     <div id='footer'>
-  September 30, 14 18:00:16 by
+  October 01, 14 10:56:40 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
