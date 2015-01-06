@@ -16,13 +16,13 @@ Other less-used dependencies are listed in `package.json`
 
 ## Installation
 
-    npm install api_playground.[[version]].tgz
+    npm install api.[[version]].tgz
 
 ## Examples
 
 ### Initialization
 ```coffee
-    {API}    = require 'api_playground'
+    {API}    = require 'api'
     util     = require 'util'
     options = 
         hostname: 'larry.salsalabs.com'
@@ -31,7 +31,7 @@ Other less-used dependencies are listed in `package.json`
 
     api = new API options
 ```
-An obect can also be installed with a JSON object in the source tree.  For example, for a file named `config/myorg.json`
+An object can also be installed with a JSON object in the source tree.  For example, for a file named `config/myorg.json`
 with these contents:
 ``` javascript
 {
@@ -40,9 +40,9 @@ with these contents:
     "password":  "extra-super-secret-password-that's-not-this-password"
  }
 ```
-the authentication would look like this:
+Instantiation example:
 ``` coffee
-    {API}    = require 'api_playground'
+    {API}    = require 'api'
     myorg    = require 'config/myorg.json'
 
     api = new API myorg
@@ -50,7 +50,7 @@ the authentication would look like this:
 ### Authentication
 ```coffee
     api.authenticate (err, response) ->
-        if err?
+        if err? or response.status != 'success'
             console.log "Unable to login, #{response}"
             process.exit 0
 ```
