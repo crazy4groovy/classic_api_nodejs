@@ -178,6 +178,7 @@ class API
     # @option   opts [String]        method  Typically "GET"...
     # @option   opts [Boolean]       json    Request treats this as a JSON call.  Typically true.
     # @param         [Function]      cb      Callback, should expect (err, records)
+    # @private
     #
     # @note
     # The 'limit' parameter in qs describes the records to read.  If it is missing
@@ -188,27 +189,28 @@ class API
     # * count   The number of records to return.  Default is to read all records.
     #
     _readFully: (opts, cb) ->
-        limit = opts.qs.limit
-        throw new Error "Error: limit must be an object, not a #{typeof limit}!" if limit? and typeof limit != 'object'
-        limit = {} unless limit?
+        localOpts = _.clone opts
+        localOpts.qs.limit = {} unless localOpts.limit?
+        throw new Error "Error: limit must be an object, not a #{typeof localOpts.qs.limit}!" if typeof localOpts.qs.limit != 'object'
+        limit = _.clone opts.qs.limit
         limit.offset = 0 unless limit.offset?
         limit.offset = Math.max limit.offset, 0
         limit.count = 500 unless limit.count?
 
         # The qs parameter contains the queries that need to be passed to
         # Salsa in the URL.  Salsa needs a 'limit' parameter in the query
-        # string.  The limit parameter is described in SalsaCommons. We'll
-        # overwrite qs.limit if it's there, and use the 'limit' parameter to
-        # control counting.
+        # string.  The limit parameter is described in SalsaCommons.
 
         records = []
         inner = (cb) ->
-            opts.qs.limit = "#{limit.offset},#{limit.count}"
-            request opts, (err, response, body) ->
+            localOpts.qs.limit = "#{limit.offset},#{limit.count}"
+            # Force out put to be encoded as JSON
+            localOpts.qs.json = true
+            request localOpts, (err, response, body) ->
                 return cb err if err?
-                limit.count = body?.length or 0
-                return cb null unless limit.count > 0
-                limit.offset = limit.offset + limit.count
+                # Body is a JSON-formatted list of records
+                limit.count = body.length
+                limit.offset = limit.offset + body.length
                 records.push body
                 cb null
 
