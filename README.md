@@ -47,7 +47,28 @@ Instantiation example:
 
     api = new API myorg
 ```
+The excellent [Commander](http://tjholowaychuk.com/post/9103188408/commander-js-nodejs-command-line-interfaces-made-easy) tool can be used to retrieve credentials from the command line as a way to supply authentication parameters:
+```coffee
+opts = require 'commander'
+opts
+    .description('Application description')
+    .version('1.0')
+    .option('--email <email>', '(Required) campaign manager email address', String, null)
+    .option('--password <password>', '(Required) campaign manager password', String, null)
+    .option('--hostname <email>', '(Required) API_HOST for the campaign manager', String, null)
+opts.parse process.argv
+
+unless opts.email?.length > 0 and opts.password?.length > 0 and opts.hostname?.length > 0
+    console.log "\nPay attention!!! ALL parameters are required!!!\n"
+    opts.help()
+api = new API opts
+```
+
 ### Authentication
+
+If there is an error during authentication, this method returns something other than "success"
+in the `error` field and the error message in `response`.
+
 ```coffee
     api.authenticate (err, response) ->
         if err? or response.status != 'success'
