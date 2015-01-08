@@ -4,13 +4,13 @@ opts    = require 'commander'
 request = require 'request'
 {API}   = require '../src/api'
 
-# Class to populate City and State in supporter records where a record
+# Class to populate City and State in supporter records where a suppporter
 # has a Zip code.  Records are read from Salsa, populated using Zippopatamus,
 # then updated in the Salsa database.
 #
 # Note on Zippopotamus:
 #
-# URL: 
+# API URL: 
 #
 # http://api.zippopotam.us/us/78701-2526
 #
@@ -18,7 +18,7 @@ request = require 'request'
 #
 # {}
 #
-# URL:
+# API URL:
 #
 # http://api.zippopotam.us/us/78701
 #
@@ -57,15 +57,14 @@ class CityStatePopulator
     # @param  [String]    condition  the condition for retrieving records
     # @param  [Function]  cb         callback to handle (`err`, `record`)
     #
-    # @note Records are returned as a JSON list of objects where
-    # each object has this format:
+    # @note Records are returned as a JSON list of objects of this format:
     #
     # { supporter_KEY: '55484631',
-         #City: '',
-         #State: '',
-         #Zip: '79277',
-         #key: '55484631',
-         #object: 'supporter'
+    #    City: '',
+    #    State: '',
+    #    Zip: '79277',
+    #    key: '55484631',
+    #    object: 'supporter'
     # }
     #
     fetch: (condition, cb) =>
@@ -81,7 +80,7 @@ class CityStatePopulator
         @api.getObjects queries, (err, results) ->
             return cb err, results if err?
             return cb null, null unless results?.length > 0
-            cb null, results.filter (r) -> r.Zip?.length > 0
+            cb null, results.filter (r) -> r.Zip?.trim().length > 0
     
     # Function to populate the city and state for a list of supporter records
     # given the ZIP code.  This function presumes that the ZIP code already
@@ -109,6 +108,9 @@ class CityStatePopulator
             return cb null, record unless results?.places?.length > 0
             record.City = results.places[0]['place name']
             record.State = results.places[0]['state abbreviation']
+            if record.City.length == 0 or record.State.length == 0
+                console.log "CityStatePopulator::populateOne #{supporter_KEY} ZIP #{record.Zip} unsuccessful"
+                console.log "CityStatePopulator::populateONe Zippopatamus record", results
             cb null, record
     
     # Main function.  Reads the records, popluates city and state, then
