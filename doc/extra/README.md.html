@@ -2,7 +2,7 @@
 <html>
   <head>
   <meta charset='UTF-8'>
-  <title>&#39;CoffeeScript_Salsa_API&#39;</title>
+  <title>CoffeeScript API Documentation</title>
   <script src='../javascript/application.js'></script>
   <script src='../javascript/search.js'></script>
   <link rel='stylesheet' href='../stylesheets/application.css' type='text/css'>
@@ -44,10 +44,10 @@
 <li><a href="https://github.com/mikeal/request">Request</a> for reading and writing web resources</li>
 <li><a href="http://underscorejs.org/">Underscore</a> <em>awesome</em> collection of array and object manipulation functions</li>
 </ul><p>Other less-used dependencies are listed in <code>package.json</code></p><h2 id="installation">Installation</h2>
-<pre><code>npm install api_playground.[[version]].tgz
+<pre><code>npm install api.[[version]].tgz
 </code></pre><h2 id="examples">Examples</h2>
 <h3 id="initialization">Initialization</h3>
-<pre><code class="lang-coffee">    {API}    = require &#39;api_playground&#39;
+<pre><code class="lang-coffee">    {API}    = require &#39;api&#39;
     util     = require &#39;util&#39;
     options = 
         hostname: &#39;larry.salsalabs.com&#39;
@@ -55,20 +55,20 @@
         password: &#39;larry-larry-larry&#39;
 
     api = new API options
-</code></pre><p>An obect can also be installed with a JSON object in the source tree.  For example, for a file named <code>config/myorg.json</code>
+</code></pre><p>An object can also be installed with a JSON object in the source tree.  For example, for a file named <code>config/myorg.json</code>
 with these contents:</p><pre><code class="lang-javascript">{
     &quot;hostname&quot;:  &quot;something.salsalabs.com&quot;,
     &quot;email&quot;:  &quot;whoever@whatever.com&quot;,
     &quot;password&quot;:  &quot;extra-super-secret-password-that&#39;s-not-this-password&quot;
  }
-</code></pre><p>the authentication would look like this:</p><pre><code class="lang-coffee">    {API}    = require &#39;api_playground&#39;
+</code></pre><p>Instantiation example:</p><pre><code class="lang-coffee">    {API}    = require &#39;api&#39;
     myorg    = require &#39;config/myorg.json&#39;
 
     api = new API myorg
 </code></pre>
 <h3 id="authentication">Authentication</h3>
 <pre><code class="lang-coffee">    api.authenticate (err, response) -&gt;
-        if err?
+        if err? or response.status != &#39;success&#39;
             console.log &quot;Unable to login, #{response}&quot;
             process.exit 0
 </code></pre>
@@ -124,11 +124,11 @@ Markup documentation can be found <a href="https://help.github.com/articles/gith
       </div>
     </div>
     <div id='footer'>
-  October 01, 14 10:56:40 by
+  January 08, 15 18:16:51 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
-  2.0.8
+  2.0.9
   &#10034;
   Press H to see the keyboard shortcuts
   &#10034;
