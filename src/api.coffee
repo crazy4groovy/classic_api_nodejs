@@ -3,6 +3,10 @@ async   = require 'async'
 request = require("request").defaults({jar: true})
 util    = require "util"
 
+# Class to encapsulate acceeing Salsa vis the API.  All of the API functions are exposed vis this
+# class.  You can find more about the Salsa API by visting the
+# [Salsa Development Doc](https://salsasupport.zendesk.com/entries/21689240-External-API-overview).
+#
 class API
     # Create a new instance of the API class.
     #
