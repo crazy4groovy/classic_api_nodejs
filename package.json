@@ -1,5 +1,5 @@
 {
-  "name": "api_playground",
+  "name": "salsa_api",
   "version": "1.1.2",
   "description": "SalsaLabs API",
   "private": true,
@@ -7,7 +7,7 @@
   "main": "./lib/api",
   "repository": {
     "type": "git",
-    "url": "https://aleonard@git.salsalabs.net/git/~aleonard/api_playground.git"
+    "url": "https://aleonard@git.salsalabs.net/git/~aleonard/salsa-api.git"
   },
   "scripts": {
     "build": "npm pack",

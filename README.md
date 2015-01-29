@@ -16,13 +16,16 @@ Other less-used dependencies are listed in `package.json`
 
 ## Installation
 
-    npm install api.[[version]].tgz
+    cd SRC_DIR/salsa_api
+    npm run build
+    cd WHERE_NODE_MODULES_DIR_LIVES
+    npm install SRC_DIR/salsa_api/*.tgz
 
 ## Examples
 
 ### Initialization
 ```coffee
-    {API}    = require 'api_playground'
+    {API}    = require 'salsa_api'
     options = 
         hostname: 'larry.salsalabs.com'
         email   : 'larry@lounge.lizard'
@@ -41,7 +44,7 @@ with these contents:
 ```
 Instantiation example:
 ``` coffee
-    {API}    = require 'api_playground'
+    {API}    = require 'salsa_api'
     myorg    = require 'config/myorg.json'
 
     api = new API myorg
