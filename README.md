@@ -22,8 +22,7 @@ Other less-used dependencies are listed in `package.json`
 
 ### Initialization
 ```coffee
-    {API}    = require 'api'
-    util     = require 'util'
+    {API}    = require 'api_playground'
     options = 
         hostname: 'larry.salsalabs.com'
         email   : 'larry@lounge.lizard'
@@ -42,7 +41,7 @@ with these contents:
 ```
 Instantiation example:
 ``` coffee
-    {API}    = require 'api'
+    {API}    = require 'api_playground'
     myorg    = require 'config/myorg.json'
 
     api = new API myorg
