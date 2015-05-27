@@ -1,15 +1,15 @@
 {
-  "name": "api_playground",
-  "version": "1.1.2",
+  "name": "salsa_api",
+  "version": "1.2.0",
   "description": "SalsaLabs API",
   "private": true,
   "author": "Allen Leonard <aleonard@salsalabs.com. (http://www.salsalabs.com)",
+  "main": "./lib/api",
   "repository": {
     "type": "git",
-    "url": "https://aleonard@git.salsalabs.net/git/~aleonard/api_playground.git"
+    "url": "https://aleonard@git.salsalabs.net/git/~aleonard/salsa-api.git"
   },
   "scripts": {
-    "prebuild": "git rm -f",
     "build": "npm pack",
     "preinstall": "coffee -c -o lib src",
     "doc": "codo -p -u --title 'CoffeeScript_Salsa_API' -d doc src examples"
