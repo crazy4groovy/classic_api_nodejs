@@ -217,10 +217,12 @@ class API
         inner = (cb) ->
             localOpts.qs.limit = "#{limit.offset},#{limit.count}"
             console.log "inner: localOpts", localOpts
-            # Force out put to be encoded as JSON
+            # Force output to be encoded as JSON
             localOpts.qs.json = true
             request localOpts, (err, response, body) ->
                 return cb err if err?
+                body = [] unless body and body.length > 0
+                console.log "body", body
                 # Body is a JSON-formatted list of records
                 limit.count = body.length
                 limit.offset = limit.offset + body.length
@@ -237,12 +239,12 @@ class API
           cb null, _.flatten records
 
     # qs is {object: whatever, key=0|Number, record_field_1: whatever, record_field_2: whatever, etc.}   
+    # @param cb  Function to accept (err, httpResponsem body from the /save)
     save: (qs, cb) ->
         opts =
             url: "https://#{@options.hostname}/save"
             qs: qs
-            method: "GET"
             json: true
-        request opts, cb
+        request.post opts, cb
 
 module.exports.API = API
