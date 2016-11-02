@@ -4,5 +4,8 @@
 # exclude patterns (uncomment them if you want to use them):
 # *.[oa]
 # *~
-api_playground.sublime-workspace
+lib
+local/*
 node_modules/*
+test/*
+tmp
