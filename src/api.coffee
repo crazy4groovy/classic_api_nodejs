@@ -131,6 +131,14 @@ class API
             json: true
         request opts, cb
 
+    getObject: (qs, cb) ->
+        opts =
+            url: "https://#{@options.hostname}/api/getObject.sjs"
+            qs: qs
+            method: 'GET'
+            json: true
+        request opts, cb
+
     # Read objects from a table.  The `qs` parameter contains the options
     # described in documentation (object, key, conditions, etc.).
     #
@@ -208,6 +216,7 @@ class API
         records = []
         inner = (cb) ->
             localOpts.qs.limit = "#{limit.offset},#{limit.count}"
+            console.log "inner: localOpts", localOpts
             # Force out put to be encoded as JSON
             localOpts.qs.json = true
             request localOpts, (err, response, body) ->

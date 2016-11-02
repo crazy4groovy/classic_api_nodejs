@@ -12,7 +12,8 @@
   "scripts": {
     "build": "npm pack",
     "preinstall": "coffee -c -o lib src",
-    "doc": "codo -p -u --title 'CoffeeScript_Salsa_API' -d doc src examples"
+    "doc": "codo -p -u --title 'CoffeeScript_Salsa_API' -d doc src examples",
+    "start": "node server/bin/www"
   },
   "bin": {},
   "dependencies": {
