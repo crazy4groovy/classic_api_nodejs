@@ -19,6 +19,7 @@ api.authenticate (err, body) ->
 
     api.getObjects queries, (err, res, donations) ->
         throw err if err?
+        process.exit 0 unless donations?
         console.log "Read returned #{donations.length} objects."
         for donation in donations
             console.log "#{donation.Transaction_Date} #{donation.First_Name} #{donation.Last_Name} #{donation.amount}"

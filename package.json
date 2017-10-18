@@ -14,7 +14,7 @@
     "preinstall": "coffee -c -o lib src",
     "doc": "codo -p -u --title 'CoffeeScript_Salsa_API' -d doc src examples",
     "start": "node server/bin/www"
-  },
+},
   "bin": {},
   "dependencies": {
     "async": "*",
@@ -30,7 +30,7 @@
     "commander": "*"
   },
   "engines": {
-    "node": "0.10.4"
+    "node": "7.10.1"
   },
   "_npmUser": {
     "name": "aleonard",

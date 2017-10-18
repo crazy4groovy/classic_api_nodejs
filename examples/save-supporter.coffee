@@ -1,8 +1,8 @@
 {API} = require '../lib/api'
 options = 
     hostname: 'wfc2.wiredforchange.com'
-    email: 'lounge@lizard.bizi'
-    password: 'larry-larry-larry'
+    email: 'aleonard@basledi.com'
+    password: 'basledi-busted'
 
 api = new API options
 api.authenticate (err) ->

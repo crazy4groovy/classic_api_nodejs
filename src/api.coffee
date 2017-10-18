@@ -49,7 +49,7 @@ class API
             json: true
         opts.qs.organization_KEY = @options.organization_KEY if @options.organization_KEY?
         opts.qs.chapter_KEY = @options.chapter_KEY if @options.chapter_KEY?
-        request opts, (err, res, body) ->
+        request.post opts, (err, res, body) ->
             return cb err, null if err?
             return cb body.status, body if body.status != 'success'
             cb null, body
@@ -78,7 +78,7 @@ class API
             qs: qs
             method: "GET"
             json: true
-        request opts, (err, res, body) ->
+        request.post opts, (err, res, body) ->
             return cb err, null if err?
             cb null, body
 
@@ -102,7 +102,7 @@ class API
             qs: qs
             method: "GET"
             json: true
-        request opts, cb
+        request.post opts, cb
 
     # Retrieve the number of records for a table. The `qs` parameter contains the options
     # described in documentation (object, key, conditions, etc.).
@@ -129,7 +129,8 @@ class API
             qs: qs
             method: 'GET'
             json: true
-        request opts, cb
+        request.post opts, cb
+
 
     getObject: (qs, cb) ->
         opts =
@@ -137,7 +138,8 @@ class API
             qs: qs
             method: 'GET'
             json: true
-        request opts, cb
+        request.post opts, cb
+
 
     # Read objects from a table.  The `qs` parameter contains the options
     # described in documentation (object, key, conditions, etc.).
@@ -219,10 +221,9 @@ class API
             console.log "inner: localOpts", localOpts
             # Force output to be encoded as JSON
             localOpts.qs.json = true
-            request localOpts, (err, response, body) ->
+            request.post localOpts, (err, response, body) ->
                 return cb err if err?
                 body = [] unless body and body.length > 0
-                console.log "body", body
                 # Body is a JSON-formatted list of records
                 limit.count = body.length
                 limit.offset = limit.offset + body.length
@@ -239,11 +240,11 @@ class API
           cb null, _.flatten records
 
     # qs is {object: whatever, key=0|Number, record_field_1: whatever, record_field_2: whatever, etc.}   
-    # @param cb  Function to accept (err, httpResponsem body from the /save)
+    # @param cb  Function to accept (err, httpResponse, body from the /save)
     save: (qs, cb) ->
         opts =
             url: "https://#{@options.hostname}/save"
-            qs: qs
+            form: qs
             json: true
         request.post opts, cb
 
