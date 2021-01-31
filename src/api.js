@@ -12,42 +12,38 @@
   util = require("util");
 
   API = (function () {
-    function API(_at_options) {
-      this.options = _at_options;
+    function API(conf) {
+      this.conf = conf;
     }
 
     API.prototype.authenticate = function (cb) {
-      var opts;
-      opts = {
-        url: "https://" + this.options.hostname + "/api/authenticate.sjs",
+      const opts = {
+        url: "https://" + this.conf.hostname + "/api/authenticate.sjs",
         qs: {
-          email: this.options.email,
-          password: this.options.password,
           json: true,
+          email: this.conf.email,
+          password: this.conf.password,
+
+          organization_KEY: this.conf.organization_KEY || undefined,
+          chapter_KEY: this.conf.chapter_KEY || undefined
         },
         method: "GET",
         json: true,
       };
-      if (this.options.organization_KEY != null) {
-        opts.qs.organization_KEY = this.options.organization_KEY;
-      }
-      if (this.options.chapter_KEY != null) {
-        opts.qs.chapter_KEY = this.options.chapter_KEY;
-      }
       return request.post(opts, function (err, res, body) {
         if (err != null) return cb(err, null);
 
         if (body.status !== "success") {
           return cb(body.status, body);
         }
+
         return cb(null, body);
       });
     };
 
     API.prototype.deleteObject = function (qs, cb) {
-      var opts;
-      opts = {
-        url: "https://" + this.options.hostname + "/delete",
+      const opts = {
+        url: "https://" + this.conf.hostname + "/delete",
         qs: qs,
         method: "GET",
         json: true,
@@ -60,9 +56,8 @@
     };
 
     API.prototype.describeObject = function (qs, cb) {
-      var opts;
-      opts = {
-        url: "https://" + this.options.hostname + "/api/describe2.sjs",
+      const opts = {
+        url: "https://" + this.conf.hostname + "/api/describe2.sjs",
         qs: qs,
         method: "GET",
         json: true,
@@ -71,9 +66,8 @@
     };
 
     API.prototype.getCount = function (qs, cb) {
-      var opts;
-      opts = {
-        url: "https://" + this.options.hostname + "/api/getCount.sjs",
+      const opts = {
+        url: "https://" + this.conf.hostname + "/api/getCount.sjs",
         qs: qs,
         method: "GET",
         json: true,
@@ -82,9 +76,8 @@
     };
 
     API.prototype.getObject = function (qs, cb) {
-      var opts;
-      opts = {
-        url: "https://" + this.options.hostname + "/api/getObject.sjs",
+      const opts = {
+        url: "https://" + this.conf.hostname + "/api/getObject.sjs",
         qs: qs,
         method: "GET",
         json: true,
@@ -93,28 +86,26 @@
     };
 
     API.prototype.getObjects = function (qs, cb) {
-      var opts;
-      opts = {
-        url: "https://" + this.options.hostname + "/api/getObjects.sjs",
+      const opts = {
+        url: "https://" + this.conf.hostname + "/api/getObjects.sjs",
         qs: qs,
         method: "GET",
         json: true,
       };
-      return this._readFully(opts, cb);
+      return this._allResultPages(opts, cb);
     };
 
     API.prototype.getTaggedObjects = function (qs, cb) {
-      var opts;
-      opts = {
-        url: "https://" + this.options.hostname + "/api/getTaggedObjects.sjs",
+      const opts = {
+        url: "https://" + this.conf.hostname + "/api/getTaggedObjects.sjs",
         qs: qs,
         method: "GET",
         json: true,
       };
-      return this._readFully(opts, cb);
+      return this._allResultPages(opts, cb);
     };
 
-    API.prototype._readFully = function (opts, cb) {
+    API.prototype._allResultPages = function (opts, cb) {
       var inner, limit, localOpts, records, working;
       localOpts = _.clone(opts);
       if (localOpts.limit == null) {
@@ -163,9 +154,8 @@
     };
 
     API.prototype.save = function (qs, cb) {
-      var opts;
-      opts = {
-        url: "https://" + this.options.hostname + "/save",
+      const opts = {
+        url: "https://" + this.conf.hostname + "/save",
         form: qs,
         json: true,
       };

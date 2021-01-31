@@ -18,7 +18,10 @@
   "bin": {},
   "dependencies": {
     "async": "*",
+    "dotenv": "^8.2.0",
+    "fetch-cookie": "^0.11.0",
     "jsdom": "*",
+    "node-fetch": "^2.6.1",
     "request": "*",
     "sprintf": "*",
     "to-csv": "*",

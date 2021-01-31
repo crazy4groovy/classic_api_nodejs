@@ -11,3 +11,4 @@ local/chapter/*
 node_modules/*
 test/*
 tmp
+config.json

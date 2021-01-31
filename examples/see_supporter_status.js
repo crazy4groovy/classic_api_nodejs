@@ -26,8 +26,8 @@
   API = require("../src/api").API;
 
   SeeSupporterStatus = (function () {
-    function SeeSupporterStatus(_at_opts) {
-      this.opts = _at_opts;
+    function SeeSupporterStatus(opts) {
+      this.opts = opts;
       this.fetch = __bind(this.fetch, this);
       this.api = new API(this.opts);
     }
