@@ -47,7 +47,8 @@ with these contents:
     {
         "hostname":  "something.salsalabs.com",
         "email":  "whoever@whatever.com",
-        "password":  "extra-super-secret-password-that's-not-this-password"
+        "password":  "extra-super-secret-password-that's-not-this-password",
+        "organization_KEY" : "50694"
     }
     ```
 
@@ -161,7 +162,3 @@ in the `error` field and the error message in `response`.
 ***Note:*** Version 1.x can only handle a single _condition_.
 
 ***Note:*** _includes_ is ignored.  A case is open to fix this problem.
-
-## Documentation
-
-Documentation is created by 'codo', and can can be found in the repository in the 'doc' directory. Markup documentation can be found [here](https://help.github.com/articles/github-flavored-markdown).
