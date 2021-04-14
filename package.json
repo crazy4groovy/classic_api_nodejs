@@ -20,20 +20,20 @@
     "async": "*",
     "dotenv": "^8.2.0",
     "fetch-cookie": "^0.11.0",
-    "jsdom": "*",
+    "jsdom": "^16.5.3",
     "node-fetch": "^2.6.1",
-    "request": "*",
-    "sprintf": "*",
-    "to-csv": "*",
-    "underscore": "*"
+    "request": "^2.88.2",
+    "sprintf": "^0.1.5",
+    "to-csv": "^0.1.1",
+    "underscore": "^1.13.0"
   },
   "devDependencies": {
-    "coffee-script": "*",
-    "codo": "*",
-    "commander": "*"
+    "codo": "^2.1.2",
+    "coffee-script": "^1.12.7",
+    "commander": "^7.2.0"
   },
   "engines": {
-    "node": "7.10.1"
+    "node": ">=12.x"
   },
   "_npmUser": {
     "name": "aleonard",
