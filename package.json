@@ -21,7 +21,7 @@
     "dotenv": "^8.2.0",
     "fetch-cookie": "^0.11.0",
     "jsdom": "^16.5.3",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "request": "^2.88.2",
     "sprintf": "^0.1.5",
     "to-csv": "^0.1.1",
